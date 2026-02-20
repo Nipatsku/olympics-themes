@@ -13,7 +13,7 @@
     }
 
     body {
-      min-height: 100dvh;
+      height: 100dvh;
       background: linear-gradient(170deg, #0a1628 0%, #112244 40%, #1a3a6e 70%, #0d2050 100%);
       display: flex;
       flex-direction: column;
@@ -22,8 +22,7 @@
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       overflow: hidden;
       position: relative;
-      padding: 24px 20px;
-      gap: 0;
+      padding: 16px 20px;
     }
 
     /* Snowflake particles */
@@ -52,21 +51,21 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 14px;
     }
 
     .rings {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       justify-content: center;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .ring {
-      width: 28px;
-      height: 28px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
-      border: 3.5px solid;
+      border: 3px solid;
       opacity: 0.9;
     }
 
@@ -78,7 +77,7 @@
 
     h1 {
       color: #fff;
-      font-size: clamp(1.15rem, 5vw, 1.55rem);
+      font-size: clamp(0.95rem, 4vw, 1.25rem);
       font-weight: 300;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -87,7 +86,7 @@
     h1 strong {
       display: block;
       font-weight: 700;
-      font-size: clamp(1.5rem, 7vw, 2.1rem);
+      font-size: clamp(1.3rem, 6vw, 1.8rem);
       letter-spacing: 0.05em;
       background: linear-gradient(90deg, #a8d8f0, #ffffff, #a8d8f0);
       -webkit-background-clip: text;
@@ -95,12 +94,13 @@
       background-clip: text;
     }
 
+    /* ── Team buttons ── */
     .buttons {
       position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 10px;
       width: 100%;
       max-width: 340px;
     }
@@ -108,16 +108,16 @@
     .team-btn {
       position: relative;
       width: 100%;
-      padding: 22px 20px;
+      padding: 12px 16px;
       border: none;
-      border-radius: 16px;
+      border-radius: 14px;
       cursor: pointer;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: #fff;
-      transition: transform 0.12s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      transition: transform 0.12s ease, box-shadow 0.2s ease;
       overflow: hidden;
       outline: none;
     }
@@ -133,12 +133,8 @@
     }
 
     .team-btn:active::before { opacity: 1; }
+    .team-btn:active { transform: scale(0.97); }
 
-    .team-btn:active {
-      transform: scale(0.97);
-    }
-
-    /* Playing state - glowing ring */
     .team-btn.playing {
       box-shadow: 0 0 0 3px rgba(255,255,255,0.85), 0 0 28px rgba(255,255,255,0.35);
       animation: pulse 2s ease-in-out infinite;
@@ -146,41 +142,126 @@
 
     @keyframes pulse {
       0%, 100% { box-shadow: 0 0 0 3px rgba(255,255,255,0.85), 0 0 28px rgba(255,255,255,0.3); }
-      50% { box-shadow: 0 0 0 3px rgba(255,255,255,0.6), 0 0 48px rgba(255,255,255,0.5); }
+      50%       { box-shadow: 0 0 0 3px rgba(255,255,255,0.6),  0 0 48px rgba(255,255,255,0.5); }
     }
 
-    /* Team colors */
     #btn-lahti {
       background: linear-gradient(135deg, #1565c0, #0d47a1, #0a2d6e);
-      box-shadow: 0 6px 24px rgba(13,71,161,0.55);
+      box-shadow: 0 5px 20px rgba(13,71,161,0.55);
     }
 
     #btn-jyvaskyla {
       background: linear-gradient(135deg, #2e7d32, #1b5e20, #0d3b12);
-      box-shadow: 0 6px 24px rgba(27,94,32,0.55);
+      box-shadow: 0 5px 20px rgba(27,94,32,0.55);
     }
 
     #btn-kuopio {
       background: linear-gradient(135deg, #7b1fa2, #4a148c, #2a0858);
-      box-shadow: 0 6px 24px rgba(74,20,140,0.55);
+      box-shadow: 0 5px 20px rgba(74,20,140,0.55);
     }
 
     .team-btn .icon {
-      margin-right: 10px;
+      margin-right: 8px;
       font-style: normal;
     }
 
-    .stop-btn {
-      margin-top: 28px;
+    /* ── Section divider ── */
+    .section-label {
+      position: relative;
+      z-index: 1;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 12px 0 8px;
+    }
+
+    /* ── Effect buttons ── */
+    .effects-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 10px;
       width: 100%;
       max-width: 340px;
-      padding: 16px;
+    }
+
+    .effect-btn {
+      flex: 1;
+      padding: 10px 6px 11px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      transition: transform 0.12s ease, box-shadow 0.2s ease;
+      outline: none;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .effect-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.12);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      border-radius: inherit;
+    }
+
+    .effect-btn:active::before { opacity: 1; }
+    .effect-btn:active { transform: scale(0.95); }
+
+    .effect-btn.playing {
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.85), 0 0 28px rgba(255,255,255,0.35);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .effect-btn .eicon { font-size: 1.3rem; line-height: 1; }
+    .effect-btn .ename {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    #btn-whistle {
+      background: linear-gradient(135deg, #b45309, #92400e, #78350f);
+      box-shadow: 0 4px 14px rgba(180,83,9,0.5);
+    }
+
+    #btn-competition {
+      background: linear-gradient(135deg, #0e7490, #155e75, #164e63);
+      box-shadow: 0 4px 14px rgba(14,116,144,0.5);
+    }
+
+    #btn-incorrect {
+      background: linear-gradient(135deg, #b91c1c, #991b1b, #7f1d1d);
+      box-shadow: 0 4px 14px rgba(185,28,28,0.5);
+    }
+
+    #btn-elevator {
+      background: linear-gradient(135deg, #6d5c1e, #544618, #3a3010);
+      box-shadow: 0 4px 14px rgba(109,92,30,0.5);
+    }
+
+    /* ── Stop button ── */
+    .stop-btn {
+      margin-top: 12px;
+      width: 100%;
+      max-width: 340px;
+      padding: 13px;
       border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 16px;
+      border-radius: 14px;
       background: rgba(255,255,255,0.08);
       backdrop-filter: blur(8px);
       color: rgba(255,255,255,0.75);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -201,12 +282,13 @@
       color: #fff;
     }
 
+    /* ── Now playing ── */
     .now-playing {
       position: relative;
       z-index: 1;
-      margin-top: 20px;
-      color: rgba(255,255,255,0.45);
-      font-size: 0.78rem;
+      margin-top: 10px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.72rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       min-height: 1.2em;
@@ -214,17 +296,14 @@
       transition: color 0.3s;
     }
 
-    .now-playing.active {
-      color: rgba(255,255,255,0.75);
-    }
+    .now-playing.active { color: rgba(255,255,255,0.75); }
 
-    /* Equalizer bars when playing */
     .eq {
       display: inline-flex;
       align-items: flex-end;
       gap: 2px;
-      height: 12px;
-      margin-right: 6px;
+      height: 10px;
+      margin-right: 5px;
       vertical-align: middle;
       opacity: 0;
       transition: opacity 0.3s;
@@ -240,10 +319,10 @@
       animation: eq-bar 0.7s ease-in-out infinite alternate;
     }
 
-    .eq span:nth-child(1) { animation-duration: 0.5s; height: 4px; }
-    .eq span:nth-child(2) { animation-duration: 0.7s; height: 8px; }
-    .eq span:nth-child(3) { animation-duration: 0.4s; height: 5px; }
-    .eq span:nth-child(4) { animation-duration: 0.6s; height: 10px; }
+    .eq span:nth-child(1) { animation-duration: 0.5s; height: 3px; }
+    .eq span:nth-child(2) { animation-duration: 0.7s; height: 7px; }
+    .eq span:nth-child(3) { animation-duration: 0.4s; height: 4px; }
+    .eq span:nth-child(4) { animation-duration: 0.6s; height: 9px; }
 
     @keyframes eq-bar {
       from { transform: scaleY(0.25); }
@@ -253,22 +332,46 @@
 </head>
 <body>
 
-  <!-- Snow -->
   <div class="snow" id="snow"></div>
 
   <header>
+    <div class="rings">
+      <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+      <div class="ring"></div><div class="ring"></div>
+    </div>
     <h1>Winter Olympics<strong>Themes</strong></h1>
   </header>
 
   <div class="buttons">
-    <button class="team-btn" id="btn-lahti" onclick="play('lahti')">
+    <button class="team-btn" id="btn-lahti"     onclick="play('lahti')">
       <span class="icon">🎿</span> Team Lahti
     </button>
     <button class="team-btn" id="btn-jyvaskyla" onclick="play('jyvaskyla')">
       <span class="icon">⛷️</span> Team Jyväskylä
     </button>
-    <button class="team-btn" id="btn-kuopio" onclick="play('kuopio')">
+    <button class="team-btn" id="btn-kuopio"    onclick="play('kuopio')">
       <span class="icon">🏔️</span> Team Kuopio
+    </button>
+  </div>
+
+  <div class="section-label">Sound Effects</div>
+
+  <div class="effects-row">
+    <button class="effect-btn" id="btn-whistle"     onclick="play('whistle')">
+      <span class="eicon">📯</span>
+      <span class="ename">Whistle</span>
+    </button>
+    <button class="effect-btn" id="btn-competition" onclick="play('competition')">
+      <span class="eicon">🏆</span>
+      <span class="ename">Comp. Music</span>
+    </button>
+    <button class="effect-btn" id="btn-incorrect"   onclick="play('incorrect')">
+      <span class="eicon">❌</span>
+      <span class="ename">Incorrect</span>
+    </button>
+    <button class="effect-btn" id="btn-elevator"    onclick="play('elevator')">
+      <span class="eicon">🛗</span>
+      <span class="ename">Elevator</span>
     </button>
   </div>
 
@@ -282,33 +385,37 @@
   </div>
 
   <script>
-    const teams = {
-      lahti:     { file: 'public/lahti.mp3',     label: 'Team Lahti',     btn: 'btn-lahti' },
-      jyvaskyla: { file: 'public/jyväskylä.mp3', label: 'Team Jyväskylä', btn: 'btn-jyvaskyla' },
-      kuopio:    { file: 'public/kuopio.mp3',    label: 'Team Kuopio',    btn: 'btn-kuopio' },
+    const sounds = {
+      lahti:       { file: 'public/lahti.mp3',       label: 'Team Lahti',        btn: 'btn-lahti',       loop: true  },
+      jyvaskyla:   { file: 'public/jyväskylä.mp3',   label: 'Team Jyväskylä',    btn: 'btn-jyvaskyla',   loop: true  },
+      kuopio:      { file: 'public/kuopio.mp3',       label: 'Team Kuopio',       btn: 'btn-kuopio',      loop: true  },
+      whistle:     { file: 'public/whistle.mp3',   label: 'Whistle',           btn: 'btn-whistle',     loop: false },
+      competition: { file: 'public/intense.mp3',    label: 'Competition Music', btn: 'btn-competition', loop: true  },
+      incorrect:   { file: 'public/wrong.wav',      label: 'Incorrect',         btn: 'btn-incorrect',   loop: false },
+      elevator:    { file: 'public/elevator.mp3',   label: 'Elevator Music',    btn: 'btn-elevator',    loop: true  },
     };
 
     let currentAudio = null;
     let currentKey   = null;
 
     function setUI(key) {
-      document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('playing'));
-      const np     = document.getElementById('now-playing');
-      const npText = document.getElementById('now-playing-text');
-      const eq     = document.getElementById('eq');
-      const stop   = document.getElementById('stop-btn');
+      document.querySelectorAll('.team-btn, .effect-btn').forEach(b => b.classList.remove('playing'));
+      const np      = document.getElementById('now-playing');
+      const npText  = document.getElementById('now-playing-text');
+      const eq      = document.getElementById('eq');
+      const stopBtn = document.getElementById('stop-btn');
 
       if (key) {
-        document.getElementById(teams[key].btn).classList.add('playing');
-        npText.textContent = teams[key].label;
+        document.getElementById(sounds[key].btn).classList.add('playing');
+        npText.textContent = sounds[key].label;
         np.classList.add('active');
         eq.classList.add('playing');
-        stop.classList.add('active');
+        stopBtn.classList.add('active');
       } else {
         npText.textContent = '—';
         np.classList.remove('active');
         eq.classList.remove('playing');
-        stop.classList.remove('active');
+        stopBtn.classList.remove('active');
       }
     }
 
@@ -317,12 +424,25 @@
 
       if (currentAudio) {
         currentAudio.pause();
+        currentAudio.currentTime = 0;
         currentAudio = null;
       }
 
-      const audio = new Audio(teams[key].file);
-      audio.loop = true;
+      const s     = sounds[key];
+      const audio = new Audio(s.file);
+      audio.loop  = s.loop;
       audio.play().catch(() => {});
+
+      if (!s.loop) {
+        audio.onended = () => {
+          if (currentAudio === audio) {
+            currentAudio = null;
+            currentKey   = null;
+            setUI(null);
+          }
+        };
+      }
+
       currentAudio = audio;
       currentKey   = key;
       setUI(key);
@@ -331,6 +451,7 @@
     function stop() {
       if (!currentAudio) return;
       currentAudio.pause();
+      currentAudio.currentTime = 0;
       currentAudio = null;
       currentKey   = null;
       setUI(null);
