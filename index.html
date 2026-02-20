@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Winter Olympics Themes</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100dvh;
+      background: linear-gradient(170deg, #0a1628 0%, #112244 40%, #1a3a6e 70%, #0d2050 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      position: relative;
+      padding: 24px 20px;
+      gap: 0;
+    }
+
+    /* Snowflake particles */
+    .snow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .flake {
+      position: absolute;
+      top: -20px;
+      color: rgba(255,255,255,0.55);
+      font-size: 1.1em;
+      animation: fall linear infinite;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110dvh) rotate(360deg); }
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .rings {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .ring {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 3.5px solid;
+      opacity: 0.9;
+    }
+
+    .ring:nth-child(1) { border-color: #4fc3f7; }
+    .ring:nth-child(2) { border-color: #f7c948; }
+    .ring:nth-child(3) { border-color: #e0e0e0; }
+    .ring:nth-child(4) { border-color: #81c784; }
+    .ring:nth-child(5) { border-color: #ef5350; }
+
+    h1 {
+      color: #fff;
+      font-size: clamp(1.15rem, 5vw, 1.55rem);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 strong {
+      display: block;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 7vw, 2.1rem);
+      letter-spacing: 0.05em;
+      background: linear-gradient(90deg, #a8d8f0, #ffffff, #a8d8f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .buttons {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .team-btn {
+      position: relative;
+      width: 100%;
+      padding: 22px 20px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      transition: transform 0.12s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      overflow: hidden;
+      outline: none;
+    }
+
+    .team-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.12);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      border-radius: inherit;
+    }
+
+    .team-btn:active::before { opacity: 1; }
+
+    .team-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Playing state - glowing ring */
+    .team-btn.playing {
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.85), 0 0 28px rgba(255,255,255,0.35);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(255,255,255,0.85), 0 0 28px rgba(255,255,255,0.3); }
+      50% { box-shadow: 0 0 0 3px rgba(255,255,255,0.6), 0 0 48px rgba(255,255,255,0.5); }
+    }
+
+    /* Team colors */
+    #btn-lahti {
+      background: linear-gradient(135deg, #1565c0, #0d47a1, #0a2d6e);
+      box-shadow: 0 6px 24px rgba(13,71,161,0.55);
+    }
+
+    #btn-jyvaskyla {
+      background: linear-gradient(135deg, #2e7d32, #1b5e20, #0d3b12);
+      box-shadow: 0 6px 24px rgba(27,94,32,0.55);
+    }
+
+    #btn-kuopio {
+      background: linear-gradient(135deg, #7b1fa2, #4a148c, #2a0858);
+      box-shadow: 0 6px 24px rgba(74,20,140,0.55);
+    }
+
+    .team-btn .icon {
+      margin-right: 10px;
+      font-style: normal;
+    }
+
+    .stop-btn {
+      margin-top: 28px;
+      width: 100%;
+      max-width: 340px;
+      padding: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.12s;
+      position: relative;
+      z-index: 1;
+      outline: none;
+    }
+
+    .stop-btn:active {
+      transform: scale(0.97);
+      background: rgba(255,255,255,0.14);
+    }
+
+    .stop-btn.active {
+      border-color: rgba(255,255,255,0.6);
+      color: #fff;
+    }
+
+    .now-playing {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      min-height: 1.2em;
+      text-align: center;
+      transition: color 0.3s;
+    }
+
+    .now-playing.active {
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* Equalizer bars when playing */
+    .eq {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+      margin-right: 6px;
+      vertical-align: middle;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .eq.playing { opacity: 1; }
+
+    .eq span {
+      display: block;
+      width: 3px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 2px;
+      animation: eq-bar 0.7s ease-in-out infinite alternate;
+    }
+
+    .eq span:nth-child(1) { animation-duration: 0.5s; height: 4px; }
+    .eq span:nth-child(2) { animation-duration: 0.7s; height: 8px; }
+    .eq span:nth-child(3) { animation-duration: 0.4s; height: 5px; }
+    .eq span:nth-child(4) { animation-duration: 0.6s; height: 10px; }
+
+    @keyframes eq-bar {
+      from { transform: scaleY(0.25); }
+      to   { transform: scaleY(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Snow -->
+  <div class="snow" id="snow"></div>
+
+  <header>
+    <div class="rings">
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+    </div>
+    <h1>Winter Olympics<strong>Themes</strong></h1>
+  </header>
+
+  <div class="buttons">
+    <button class="team-btn" id="btn-lahti" onclick="play('lahti')">
+      <span class="icon">🎿</span> Team Lahti
+    </button>
+    <button class="team-btn" id="btn-jyvaskyla" onclick="play('jyvaskyla')">
+      <span class="icon">⛷️</span> Team Jyväskylä
+    </button>
+    <button class="team-btn" id="btn-kuopio" onclick="play('kuopio')">
+      <span class="icon">🏔️</span> Team Kuopio
+    </button>
+  </div>
+
+  <button class="stop-btn" id="stop-btn" onclick="stop()">⏹ Stop</button>
+
+  <div class="now-playing" id="now-playing">
+    <span class="eq" id="eq">
+      <span></span><span></span><span></span><span></span>
+    </span>
+    <span id="now-playing-text">—</span>
+  </div>
+
+  <script>
+    const teams = {
+      lahti:     { file: 'public/lahti.mp3',     label: 'Team Lahti',     btn: 'btn-lahti' },
+      jyvaskyla: { file: 'public/jyväskylä.mp3', label: 'Team Jyväskylä', btn: 'btn-jyvaskyla' },
+      kuopio:    { file: 'public/kuopio.mp3',    label: 'Team Kuopio',    btn: 'btn-kuopio' },
+    };
+
+    let currentAudio = null;
+    let currentKey   = null;
+
+    function setUI(key) {
+      document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('playing'));
+      const np     = document.getElementById('now-playing');
+      const npText = document.getElementById('now-playing-text');
+      const eq     = document.getElementById('eq');
+      const stop   = document.getElementById('stop-btn');
+
+      if (key) {
+        document.getElementById(teams[key].btn).classList.add('playing');
+        npText.textContent = teams[key].label;
+        np.classList.add('active');
+        eq.classList.add('playing');
+        stop.classList.add('active');
+      } else {
+        npText.textContent = '—';
+        np.classList.remove('active');
+        eq.classList.remove('playing');
+        stop.classList.remove('active');
+      }
+    }
+
+    function play(key) {
+      if (currentKey === key) return;
+
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+      }
+
+      const audio = new Audio(teams[key].file);
+      audio.loop = true;
+      audio.play().catch(() => {});
+      currentAudio = audio;
+      currentKey   = key;
+      setUI(key);
+    }
+
+    function stop() {
+      if (!currentAudio) return;
+      currentAudio.pause();
+      currentAudio = null;
+      currentKey   = null;
+      setUI(null);
+    }
+
+    // ── Snowflakes ──────────────────────────────────────────────
+    (function spawnSnow() {
+      const container = document.getElementById('snow');
+      const count = 28;
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'flake';
+        el.textContent = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+        el.style.left     = Math.random() * 100 + 'vw';
+        el.style.fontSize = (0.7 + Math.random() * 0.9) + 'em';
+        el.style.opacity  = (0.2 + Math.random() * 0.5).toFixed(2);
+        const dur = 8 + Math.random() * 14;
+        el.style.animationDuration = dur + 's';
+        el.style.animationDelay   = -(Math.random() * dur) + 's';
+        container.appendChild(el);
+      }
+    })();
+  </script>
+</body>
+</html>
